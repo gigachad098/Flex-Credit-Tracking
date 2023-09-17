@@ -1,0 +1,12 @@
+<header>
+    <h3>Auth0 Angular</h3>
+    <div *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+        <button class="btn btn-warning" (click)="auth.logout()">
+          Log out
+        </button>
+    </div>
+
+    <ng-template #loggedOut>
+        <button class="btn btn-primary" (click)="auth.loginWithRedirect()">Log in</button>
+    </ng-template>
+</header>
