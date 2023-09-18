@@ -8,18 +8,25 @@ import { HeaderComponent } from './layout/header/header.component';
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
 
-    // Import the module into the application, with configuration
-    AuthModule.forRoot(environment.auth)
+    AuthModule.forRoot({
+      domain: 'flextracking.us.auth0.com',
+      clientId: 'lvPYTOdRHha2RlQWDBMtxT3moBMo0xoS',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

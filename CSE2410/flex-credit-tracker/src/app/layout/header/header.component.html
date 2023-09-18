@@ -10,3 +10,8 @@
         <button class="btn btn-primary" (click)="auth.loginWithRedirect()">Log in</button>
     </ng-template>
 </header>
+<body>
+    <ul *ngIf="auth.user$ | async as user">
+        <p>Welcome {{ user.nickname }}</p>
+      </ul>`
+</body>
