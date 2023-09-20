@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "testscraper": "ts-node scraper/scrape.mjs"
   },
   "private": true,
   "dependencies": {
@@ -19,7 +20,11 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@auth0/auth0-angular": "^2.2.1",
+    "date-fns": "^2.30.0",
+    "fs": "^0.0.1-security",
+    "puppeteer": "^21.2.1",
     "rxjs": "~7.8.0",
+    "ts-node": "^10.9.1",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
