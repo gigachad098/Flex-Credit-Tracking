@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+  }
+  
+  .message{
+    display: inline-block;
+    width: 300px;
+    padding: 100px;
+  }
