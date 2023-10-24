@@ -1,7 +1,7 @@
 # Flex-Credit-Tracking
 
 ### Current TODO:
-- Connect email scraper to DB (tommy or emma?)
-- Connect DB to csv scraper (chris)
-- Connect csv scraper to stat calculator (tommy or emma?)
+- Connect email scraper to DB (chris)
+- Connect DB to csv scraper (emma)
+- Connect csv scraper to stat calculator (tommy)
 - UI (xander and al)
