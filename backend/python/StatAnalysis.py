@@ -1,5 +1,7 @@
 import sys
 from datetime import datetime, timedelta
+from os import listdir, remove
+from os.path import isfile, join
 
 LOCATIONS = {"Panther Grocery 74" : "Panther Grocery",
              "Panther Grocery 74 - Purchase" : "Panther Grocery",
@@ -15,18 +17,31 @@ LOCATIONS = {"Panther Grocery 74" : "Panther Grocery",
 
 
 def valid_args():
+    
     if len(sys.argv) != 2:
         print(f"ERROR:\t\"StatAnalysis.py\" recieved incorrect number " + 
                 f"of arguments (expected 1, got {len(sys.argv) - 1})")
-        return False
+        return False, ""
 
-    filename = sys.argv[1]
+    filepath = sys.argv[1]
+    
+    onlyfiles = [f for f in listdir(filepath) if isfile(join(filepath, f))]
+    
+    found = False
+    for f in onlyfiles:
+        if f[-4:] == ".csv":
+            if found:
+                print(f"ERROR:\t\"StatAnalysis.py\" recieved a file path " +
+                        f"containing multiple .csv files")
+                return False, ""
+            filename = f
+            found = True
 
-    if len(filename) < 4 or filename[-4:] != ".csv":
-        print(f"ERROR:\t\"StatAnalysis.py\" must recieve the name of a .csv " +
-                "file as an argument (received \"{filename}\")")
-        return False
-    return True
+    if not found:
+        print(f"Try again Java!")
+        return False, ""
+    
+    return True, join(filepath, filename)
 
 
 
@@ -127,10 +142,10 @@ def semester_day_info(first_spend_day, days_in_semester):
 
 def main():
     
-    if not valid_args():
-        return
+    valid, filename = valid_args()
     
-    filename = sys.argv[1]
+    if not valid:
+        return
     
     total_days = 119
     
@@ -183,6 +198,8 @@ def main():
     # -------------------------------------------------------
     #                End of formatted print
     # -------------------------------------------------------
+    
+    remove(filename)
             
         
       
