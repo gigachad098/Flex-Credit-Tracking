@@ -6,18 +6,12 @@ import imaplib
 from cleantext import clean
 import codecs
 
-user_email = "tommy.tpg03@gmail.com"
+user_email = os.environ.get('EMAIL-ADR')
 email_password = os.environ.get('EMAIL-PASS')
 email_receiver = "malvarez2022@my.fit.edu"
 
-subject = "Testing Auto Email Sender"
-body = "cool beans :)"
-
-em = email.message.EmailMessage()
-em['From'] = user_email
-em['To'] = email_receiver
-em['Subject'] = subject
-em.set_content(body)
+#print(user_email)
+#print(email_password)
 
 context = ssl.create_default_context()
 
@@ -33,16 +27,15 @@ with imaplib.IMAP4_SSL('imap.gmail.com', ssl_context=context) as imap:
     
     messages = int(messages[0])
     
-    print(f"\n{messages} messages\n")
+    #print(f"\n{messages} messages\n")
     
-    TOTAL_MESSAGES = 15
     
-    for i in range(messages, messages - TOTAL_MESSAGES, -1):
+    for i in range(messages, 0, -1):
         res, msg = imap.fetch(str(i), "(RFC822)")
         for response in msg:
             if isinstance(response, tuple):
                 # parse a bytes email into a message object
-                msg = email.message_from_bytes(response[1], policy=email.policy.default)
+                msg = email.message_from_bytes(response[1])
                 # decode the email subject
                 subject, encoding = email.header.decode_header(msg["Subject"])[0]
                 
@@ -55,13 +48,18 @@ with imaplib.IMAP4_SSL('imap.gmail.com', ssl_context=context) as imap:
                     From = From.decode(encoding)
                     From = clean(From.strip(), no_emoji=True)
                 
-                print(f"{From.split('<')[0].strip()}: ", end="")
+                from_string = f"{From.split('<')[0].strip()}"
+                if from_string != "Panther ACCESS Card Accounts":
+                    continue
                 
                 subject = clean(subject.strip(), no_emoji=True)
                 
-                if len(subject) == 0:
-                    print("(no subject)")
-                elif len(subject) > 60:
-                    print(f"{subject[:57]}...")
-                else:
-                    print(f"{subject}")
+                for part in msg.walk():
+                    if part.get_content_maintype() == 'multipart':
+                        continue
+                    temp = part.get_payload(decode=True).decode('utf-8')
+                    password_index = temp.find("Password: ")
+                    password_end_index = temp[password_index:].find('\r\n') + password_index
+                    password = temp[password_index + 10:password_end_index].strip()
+                    print(password)
+                    break
