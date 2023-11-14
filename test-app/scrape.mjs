@@ -14,8 +14,8 @@ async function enterPage() {
       downloadPath: "C:\\Users\\tommy\\OneDrive\\Desktop\\Flex Tracker Prototype\\Flex-Credit-Tracking\\test-app"
     });
     await page.goto('https://atriumconnect.atriumcampus.com/login.php?cid=134&wason=/statementnew.php&cid=134');
-    await page.type('#loginphrase', 'xanderlockard14@gmail.com');
-    await page.type('#password', '769YD23N48');
+    await page.type('#loginphrase', 'flexcredittracker@gmail.com');
+    await page.type('#password', '837TRZ89NG');
     await page.click('.icon-arrow-right');
     await page.waitForNavigation();
     //console.log(statementLink)
