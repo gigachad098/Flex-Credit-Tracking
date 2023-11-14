@@ -199,7 +199,7 @@ def main():
     #                End of formatted print
     # -------------------------------------------------------
     
-    #remove(filename)
+    remove(filename)
             
         
       
