@@ -3,20 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './layout/header/header.component';
-
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment';
 import { HomepageComponent } from './homepage/homepage.component';
-import { FirstloginComponent } from './firstlogin/firstlogin.component';
+import { FlexInfoComponent } from './flex-info/flex-info.component';
+import { SpendingListComponent } from './spending-list/spending-list.component';
+import { AuthService } from '@auth0/auth0-angular';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     HomepageComponent,
-    FirstloginComponent
+    HomepageComponent,
+    FlexInfoComponent,
+    SpendingListComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

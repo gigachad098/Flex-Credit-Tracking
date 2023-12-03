@@ -1,9 +1,56 @@
-.container {
-    display: flex;
-  }
-  
-  .message{
-    display: inline-block;
-    width: 300px;
-    padding: 100px;
-  }
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  /* gradient from red to black */
+  background-image: linear-gradient(to bottom right, #DC143C, #3D0C02);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  height: 100vh; 
+}
+
+
+.flex-box {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 50px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px; /* Adjust space between the image and the text box */
+  z-index: 2;
+}
+
+.button {
+  background-color: #C41230;
+  color: white;
+  padding: 15px 25px;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #9E1B28;
+}
+
+.logo {
+  width: 150px; 
+  height: auto; 
+  display: block; 
+  margin-bottom: 30px; /* Increase space between the logo and the text box */
+  margin-top: -110px; /* Move the image higher up */
+}
+
+

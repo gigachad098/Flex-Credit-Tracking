@@ -1,0 +1,5 @@
+<div *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+<app-flex-info></app-flex-info></div>
+<ng-template #loggedOut>
+    <app-homepage></app-homepage>
+</ng-template>
