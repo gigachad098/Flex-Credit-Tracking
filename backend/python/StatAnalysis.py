@@ -57,16 +57,15 @@ def today_spend_stats(filename):
             continue
         date = tokens[0].split()[0]
         amount =  -float(tokens[2])
-        if amount < 0:
-            if amount_left == -1:
+        if amount_left == -1:
                 amount_left = float(tokens[3])
+        if amount < 0:
             continue
         if date == today:
             total_today += amount
-            if amount_left == -1:
-                amount_left = float(tokens[3])
         else:
             break
+    file.close()
     return total_today, amount_left
     
 
@@ -98,7 +97,7 @@ def semester_spend_stats(filename):
             if amount > 0:
                 first_spend_day = date
             prev_day = date
-            
+    file.close()
     return semester_amount, first_spend_day
 
 
@@ -113,6 +112,10 @@ def purchases_per_location(filename):
         tokens = line.strip().split(",")
         if tokens[0] == "Date":
             continue
+        amount = -float(tokens[2])
+        # First import of semester
+        if tokens[1].find("PatronImport") == 0 or tokens[1].find("JSA") == -1 and amount < 0:
+            break
         if LOCATIONS.get(tokens[1]) == None:
             location = "Unknown"
         else:
@@ -125,7 +128,7 @@ def purchases_per_location(filename):
             location_purchases[location] += 1
         else:
             location_purchases[location] = 1
-
+    file.close()
     # Extract locations-frequency pairs from dictionary and rank locations by frequency
     ranked_locations = [y[::-1] for y in sorted([x[::-1] for x in location_purchases.items()])][::-1]
     return ranked_locations
@@ -144,6 +147,13 @@ def main():
     
     valid, filename = valid_args()
     
+    check_file = open(filename)
+    if check_file.readlines()[1].strip() == 'No transaction history found for this date range.,,,':
+        print("\nUser does not have any flex this semester!")
+        check_file.close()
+        remove(filename)
+        return
+    
     if not valid:
         return
     
@@ -152,6 +162,7 @@ def main():
     ranked_locations = purchases_per_location(filename)
     starting_amount, first_spend_day = semester_spend_stats(filename)
     spent_today, amount_remaining = today_spend_stats(filename)
+    #amount_remaining = 450
     total_spent = starting_amount - amount_remaining
     
     month = int(first_spend_day.split("/")[0])
@@ -176,8 +187,8 @@ def main():
     print(f"Approximate end of semester: {last_semester_day.strftime('%m/%d/%Y')}\n")
 
     print(f"Flex this semester: ${starting_amount:.2f}")
-    print(f"Total spent (so far): ${total_spent + spent_today:.2f}")
-    print(f"Total spent (not including today): ${total_spent:.2f}")
+    print(f"Total spent (so far): ${total_spent:.2f}")
+    print(f"Total spent (not including today): ${total_spent - spent_today:.2f}")
     print(f"Amount remaining: ${amount_remaining:.2f}\n")
     
     print(f"Ideal daily spending: ${ideal_average:.2f}")
@@ -195,13 +206,13 @@ def main():
             print(f"{purchases} purchase at {location}")
         else:
             print(f"{purchases} purchases at {location}")
+    if net > 50 and (first_spend_day + timedelta(days=119) - datetime.today()).days <= 21:
+        print("\nHey! You have a lot of spare Flex! Consider buying the devs lunch!")
     # -------------------------------------------------------
     #                End of formatted print
     # -------------------------------------------------------
     
+    check_file.close()
     remove(filename)
-            
-        
-      
         
 main()
