@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flex Stats Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <!-- Main DashBoard -->
+   <img src="Florida_Institute_of_Technology_(seal).svg.png" alt="Florida Tech Logo" class="logo">
+  <div class="dashboard-container">
+   <div class="stats-column">
+       <ul class="stats-list">
+         <li class="title">Flex Dashboard</li>
+         <li>Amount remaining: <span>$0.00</span></li>
+         <li>Money spent today : <span>$0.00</span></li>
+         <li>Average daily spending: <span>$0.00</span></li>
+         <li>Ideal daily spending: <span>$0.00</span></li>
+         <li>Flex this semester: <span id="totalFlex">$0.00</span></li>
+         <button class="button" id="refreshButton">Refresh</button>
+       </ul>
+   </div>
+
+<!-- The Pop-up Modals -->
+<div class="modal-backdrop"></div>
+<div class="modal">
+     <!-- Instruction Modal content -->
+   <h2>Setup for Flex Purchase Tracking</h2>
+    <p>The first step is to navigate and log in to your flex page by using the following link: <a href="https://services.jsatech.com/index.php?cid=134">https://services.jsatech.com/index.php?cid=134</a></p>
+    <p>Then follow the steps outlined below</p>
+    <img src="Grant_Access_img.png" alt="The Grant Access Image">
+    <p>Email: flexcredittracker@gmail.com</p>
+  <button class="button close-button">Close</button>
+</div>
+
+<!-- Internet Connection Error Modal -->
+<div class="modal" id="internetErrorModal">
+   <h2>Connection Error</h2>
+   <p>Check Internet Connection.</p>
+   <button class="button close-button">Close</button>
+</div>
+
+<!-- General Error Modal -->
+<div class="modal" id="generalErrorModal">
+   <h2>Error</h2>
+   <p>Something Went Wrong.</p>
+   <button class="button close-button">Close</button>
+</div>
+
+<!-- Trigger Button for instruction -->
+<button class="button open-button">Open Instructions</button>
+<!-- Trigger Buttons for error modals -->
+<button class="button" id="showInternetErrorBtn">Show Internet Error</button>
+<button class="button" id="showGeneralErrorBtn">Show General Error</button>
+
+<script src="script.js"></script>
+</body>
+</html>

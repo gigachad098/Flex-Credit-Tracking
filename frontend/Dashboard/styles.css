@@ -1,0 +1,112 @@
+html {
+   height: 100%;
+   margin: 0;
+   font-family: Arial, sans-serif;
+   /* color of background crimson to black*/
+   background-image: linear-gradient(to bottom right, #DC143C, #3D0C02);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.dashboard-container {
+   display: flex;
+   flex-direction: column; /* Stack the stats vertically */
+   justify-content: center; /* Center the container */
+   align-items: flex-start; /* Align items to the start of the container */
+   background-color: rgba(255, 255, 255, 0.9);
+   padding: 23px;
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   text-align: left; /* Align the text to the left */
+   width: 400px; /* size of width for container */
+}
+
+
+.stats-list {
+   list-style-type: none;
+   padding: 0;
+   width: 173%; /* Ensure the list takes up the full width of the dashnboard */
+}
+
+.stats-list .title {
+   font-size: 24px; /* Larger font size for the title */
+   margin-bottom: 15px; /* Space after the title */
+   font-weight: bold; /* title to be bold */
+   text-align: center;
+   display: block;
+}
+
+.stats-list li {
+   padding: 10px; /* Space inside each item */
+   display: flex; /* Aligns content in a row */
+   justify-content: space-between; /* Puts space between content */
+   align-items: center; /* Centers items vertically */
+   margin-bottom: 10px; /* Space below each item */
+   background-color: #fff; /* White background */
+   border-radius: 5px; /* Rounded corners */
+   box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadow effect */
+}
+
+
+.stats-list li span {
+   margin-left: auto;
+}
+
+.logo {
+   width: 150px;
+   height: auto;
+   display: block;
+   margin: -30px auto 30px; /* Distance between logo fro, top of screeen and left/right of it */
+}
+.button {
+   background-color: #C41230; /* Red color */
+   color: white; /* Text color */
+   padding: 10px 20px; /* Padding inside the button */
+   margin: 10px auto; /* Vertical margin and horizontally centered */
+   border: none; /* No border */
+   cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+   display: block; /* Block display to allow margin auto to center the button */
+   font-size: 18px; /* Text size */
+   border-radius: 5px; /* Rounded corners */
+   text-align: center; /* Center the text inside the button */
+   margin-top: 25px; /* Adjust the value as needed to move the button down */
+   margin-bottom: -10px; /* Less space on the bottom */
+}
+.button:hover {
+   background-color: #9E1B28;
+}
+
+.modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1000; /* Sit on top */
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%); /* Center the modal */
+   width: auto; /* Auto width based on content */
+   max-width: 600px; /* Maximum width */
+   background: white;
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Backdrop styles */
+.modal-backdrop {
+   display: none; /* Hides the backdrop initially */
+   position: fixed; /* makes it relative to viewport, so it doesn't move when scrolling */
+   top: 0; left: 0; /* Puts backdrop at the top-left corner of the viewport */
+   width: 100vw; height: 100vh; /* Sets the backdrop size to cover the entire viewport */
+   background: rgba(0, 0, 0, 0.4); /* Gives it a semi-transparent black color */
+   z-index: 999; /* Ensures it appears over other content */
+}
+
+.modal img {
+   max-width: 100%; /* Limit width to the modal's width */
+   max-height: 300px; /* Set a maximum height for the image */
+   height: auto; /* Maintain aspect ratio */
+   display: block; /* Center the image */
+   margin: 10px auto; /* Space above and below the image */
+   object-fit: contain; /* Ensure the entire image is visible */
+}
